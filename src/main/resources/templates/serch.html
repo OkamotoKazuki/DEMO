@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title></title>
+</head>
+<body>
+	<h3>検索結果</h3>
+	<p th:if="${param.error}">Error!</p>
+	<form th:action="@{/serchResult}" method="POST">
+		<table>
+			<tr>
+				<td>商品名</td>
+				<td>価格</td>
+				<th><button type="submit">検索</button></th>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

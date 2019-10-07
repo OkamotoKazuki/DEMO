@@ -1,0 +1,18 @@
+1.posgresSQLダウンロード
+
+2.環境変数設定
+変数名：PGDATA
+変数値：C:\Program Files\PostgreSQL\10\bin;
+
+変数名：Path
+変数値：C:\Program Files\PostgreSQL\10\bin\;
+
+3.A5:Mk-2 SQL設定
+サーバー名：localhost
+データベース名：postgres
+ユーザーID：postgres ※postgresインストール時に決めた名前、パスワード
+パスワード：postgres
+ポート番号：5432
+
+参考
+https://eng-entrance.com/postgresql-download-install

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title></title>
+</head>
+<body>
+	<h3>検索結果</h3>
+	<p th:if="${param.error}">Error!</p>
+	<form th:action="@{/serchResult}" method="POST">
+		<table>
+			<tr>
+				<td>No</td>
+				<td>商品名</td>
+				<td>価格</td>
+				<td><button type="submit">検索</button></td>
+			</tr>
+
+			<script>
+				// 連番をふる
+				var count = 0;
+			</script>
+
+			<tr th:each="list : ${serchFormList}" th:object="${list}">
+				<td id ="no">
+					<script>count++;
+					document.write(count);
+					//document.getElementById("no").innerHTML = count;</script></td>
+				<td th:text="*{itemName}"></td>
+				<td th:text="*{itemPrice}"></td>
+				<td><script>
+					document.write('<input type="checkbox" name="itemCheck" value="'+count+'" />');
+				</script></td>
+			</tr>
+		</table>
+	</form>
+
+<script>
+// 連番をふる
+//document.getElementById("no").value = count;
+//count++;
+</script>
+
+	<form th:action="@{/buy}" method="POST">
+		<button type="submit">購入</button>
+	</form>
+</body>
+</html>
