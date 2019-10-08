@@ -6,15 +6,15 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import form.BuyForm;
 import form.SerchResultForm;
 
-@RestController
+@Controller
 public class SerchResultController {
 
     @RequestMapping(value = "/serchResult", method = RequestMethod.POST)

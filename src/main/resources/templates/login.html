@@ -6,16 +6,19 @@
 </head>
 <body>
 	<h3>ログインフォーム</h3>
-	<p th:if="${param.error}">Error!</p>
-	<form th:action="@{/serch}" method="POST">
+	<div th:object="${form}">
+		<input type="text" th:field="*{msg}"/>
+	</div>
+	<form th:action="@{/login}" method="POST">
 		<table>
 			<tr>
+			<tr th:object="${form}">
 				<td><label for="userName">User:</label></td>
-				<td><input type="text" name="userName"/></td>
+				<td><input type="text" th:field="*{userName}"/></td>
 			</tr>
-			<tr>
+			<tr th:object="${form}">
 				<td><label for="passWord">Password:</label></td>
-				<td><input type="passWord" name="passWord"/></td>
+				<td><input type="text" th:field="*{passWord}"/></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>

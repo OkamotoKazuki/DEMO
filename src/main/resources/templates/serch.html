@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h3>検索結果</h3>
-	<p th:if="${param.error}">Error!</p>
+	<p th:if="${error}">Error!</p>
 	<form th:action="@{/serchResult}" method="POST">
 		<table>
 			<tr>

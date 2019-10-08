@@ -1,9 +1,13 @@
-package form;
+package dto;
 
 import lombok.Data;
 
+/**
+ * LoginInfoテーブルDTO
+ *
+ */
 @Data
-public class LoginForm {
+public class LoginInfo implements Comparable<LoginInfo>{
 
 	/** ユーザーId */
 	private String userId;
@@ -25,4 +29,10 @@ public class LoginForm {
 
 	/** メッセージ */
 	private String msg;
+
+	@Override
+	public int compareTo(LoginInfo o) {
+		// TODO 自動生成されたメソッド・スタブ
+		return 0;
+	}
 }

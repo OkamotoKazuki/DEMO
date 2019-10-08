@@ -2,8 +2,17 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="info.nakamuri.app.spike.mybatisspike001.CardMapper">
-    <select id="findLoginInfo" resultType="logininfo">
-        select * from logininfo
-    </select>
+
+<mapper namespace="mapper.LoginInfoSqlCommon">
+    <select id="findLoginInfo" resultType="dto.LoginInfo">
+		select * from logininfo
+		where username = #{param1}
+		and password = #{param2}
+		and deleteflg = #{param3}
+	</select>
+
+    <insert id="insert" parameterType="dto.LoginInfo">
+ 	insert into logininfo (userid, username, password, insertdate, deleteflg)
+ 	values (#{userid}, #{username}, #{password}, #{insertdate}, 0)
+ 	</insert>
 </mapper>
