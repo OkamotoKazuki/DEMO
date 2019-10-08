@@ -6,7 +6,7 @@
   <settings>
     <!-- キャメルケース、スネークケースの差を埋める -->
     <setting name="mapUnderscoreToCamelCase" value="true"/>
-    <!-- mybatisログ出力用
+    <!-- mybatisログ出力用 使い方わからず
     <setting name="logImpl" value="LOG4J"/> -->
   </settings>
 

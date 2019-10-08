@@ -5,31 +5,27 @@
 	<title></title>
 </head>
 <body>
-	<h3>ログインフォーム</h3>
-	<form th:action="@{/login}" method="POST">
+	<h3>ユーザー登録フォーム</h3>
+	<form th:action="@{/userInsert}" method="POST">
 		<table>
 			<tr th:each="msg : ${msgList}">
 				<td th:text="${msg}"></td>
 			</tr>
 		</table>
 		<table>
-			<tr>
 			<tr th:object="${form}">
-				<td><label for="userName">User:</label></td>
+				<td><label for="userName">名前:</label></td>
 				<td><input type="text" th:field="*{userName}"/></td>
 			</tr>
 			<tr th:object="${form}">
-				<td><label for="passWord">Password:</label></td>
+				<td><label for="passWord">パスワード:</label></td>
 				<td><input type="text" th:field="*{passWord}"/></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
-				<td><button type="submit">ログイン</button></td>
+				<td><button type="submit">登録</button></td>
 			</tr>
 		</table>
-	</form>
-	<form th:action="@{/insertIndex}" method="POST">
-	<button type="submit">新規登録</button>
 	</form>
 </body>
 </html>

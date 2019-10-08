@@ -4,12 +4,8 @@ import java.util.List;
 
 import lombok.Data;
 
-/**
- * LoginInfoテーブルDTO
- *
- */
 @Data
-public class LoginInfo implements Comparable<LoginInfo>{
+public class UserInsertInfo {
 
 	/** ユーザーId */
 	private String userId;
@@ -31,10 +27,4 @@ public class LoginInfo implements Comparable<LoginInfo>{
 
 	/** メッセージ */
 	private List<String> msgList;
-
-	@Override
-	public int compareTo(LoginInfo o) {
-		// TODO 自動生成されたメソッド・スタブ
-		return 0;
-	}
 }

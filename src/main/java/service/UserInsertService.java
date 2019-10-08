@@ -6,36 +6,32 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 import constCode.ConstCode;
-import dto.LoginInfo;
+import dto.UserInsertInfo;
 import mapper.LoginInfoSqlCommon;
 import mybatis.sqlsession.MyBatisSqlSessionFactory;
 
 @Service
-public class LoginService {
+public class UserInsertService {
 
 	/** ログ準備 */
 	Log log = LogFactory.getLog(LoginService.class);
 
-	public LoginInfo loginInfoSerch(String userName, String passWord, String deleteFlg) {
+	public UserInsertInfo userInsert(UserInsertInfo info) {
 		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
 
-		LoginInfo info = null;
 		try {
 			// ログイン情報をDBから取得
 			LoginInfoSqlCommon mapper = sqlSession.getMapper(LoginInfoSqlCommon.class);
 
-			log.info("ログイン情報検索を開始します");
-			info = mapper.findLoginInfo(userName, passWord, deleteFlg);
-			log.info("ログイン情報検索を終了します");
+			log.info("新規ユーザー情報登録を開始します");
+			mapper.userInsert(info);
+			log.info("新規ユーザー情報登録を終了します");
 
-			// DBに登録あればログイン可能
-			if (info == null) {
-				info = new LoginInfo();
-				info.setResultCode(ConstCode.FAILE_CODE);
-				info.setMsg("新規登録してください。");
-			} else {
-				info.setResultCode(ConstCode.SUCCESS_CODE);
-			}
+			sqlSession.commit();
+
+			mapper.findLoginInfo(info.getUserName(), info.getUserId(), "0");
+
+			info.setResultCode(ConstCode.SUCCESS_CODE);
 		} finally {
 			sqlSession.close();
 		}

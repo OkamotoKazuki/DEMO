@@ -1,5 +1,7 @@
 package form;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -24,5 +26,5 @@ public class LoginForm {
 	private String resultCode;
 
 	/** メッセージ */
-	private String msg;
+	private List<String> msgList;
 }

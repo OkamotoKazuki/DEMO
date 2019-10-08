@@ -1,4 +1,4 @@
-package impl;
+package mybatis.sqlsession;
 
 import java.io.IOException;
 import java.io.InputStream;
