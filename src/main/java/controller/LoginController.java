@@ -59,7 +59,7 @@ public class LoginController {
 		if (this.checkVal(form.getUserName(), form.getPassWord(), form)) {
 
 			log.info("ログインサービスを開始します");
-			LoginInfo info = loginService.loginInfoSerch(form.getUserName(), form.getPassWord(), "0"); // "aaaa", "1111", "0"
+			LoginInfo info = loginService.loginInfoSerch(form.getUserName(), form.getPassWord(), "0");
 			log.info("ログインサービスを終了します");
 
 			BeanUtils.copyProperties(info, form);
@@ -71,6 +71,8 @@ public class LoginController {
 				view = "/login";
 			}
 		}
+		form.setUserName("");
+		form.setPassWord("");
 		model.addAttribute("form", form);
 		model.addAttribute("msgList", form.getMsgList());
 		return view;
@@ -88,7 +90,7 @@ public class LoginController {
 		return "/userInsert";
 	}
 
-	/** */
+	/** 新規登録押下 */
 	@RequestMapping(value = "/userInsert", method = RequestMethod.POST)
 	public String userInsert(Model model, UserInsertForm form) {
 		UserInsertInfo info = new UserInsertInfo();
@@ -113,6 +115,8 @@ public class LoginController {
 				view = "/userInsert";
 			}
 		}
+		form.setUserName("");
+		form.setPassWord("");
 		model.addAttribute("form", form);
 		model.addAttribute("msgList", form.getMsgList());
 		return view;
@@ -135,8 +139,6 @@ public class LoginController {
 			judge = false;
 		}
 		form.setMsgList(msgList);
-		form.setUserName("");
-		form.setPassWord("");
 		return judge;
 	}
 
@@ -156,8 +158,6 @@ public class LoginController {
 			judge = false;
 		}
 		form.setMsgList(msgList);
-		form.setUserName("");
-		form.setPassWord("");
 		return judge;
 	}
 

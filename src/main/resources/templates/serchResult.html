@@ -4,7 +4,23 @@
 	<meta charset="UTF-8" />
 	<title></title>
 </head>
+<div id="header">
+	<div>ECサイトデモ</div>
+	<label for="menu" id="ens"><img src="ens.jpg" width="50" height="50">メニュー</img><label>
+	<br><a href="http://localhost:8080/login">ログアウト</a>
+</div>
 <body>
+<div id="slideL" class="off">
+<!-- サイドバーの中身 -->
+<div class="slide-inner">
+	<ul>
+		<li><a href="#">かつら</a></li>
+		<li><a href="#">育毛剤</a></li>
+		<li><a href="#">除草剤</a></li>
+	</ul>
+</div>
+<div id="slideR">
+	<section>
 	<h3>検索結果</h3>
 	<p th:if="${param.error}">Error!</p>
 	<form th:action="@{/serchResult}" method="POST">
@@ -34,15 +50,86 @@
 			</tr>
 		</table>
 	</form>
-
+	<form th:action="@{/buy}" method="POST">
+			<button type="submit">購入</button>
+	</form>
+	</section>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://common/javascript/jquery.min.js"><\/script>')</script>
 <script>
-// 連番をふる
-//document.getElementById("no").value = count;
-//count++;
+// サイドメニュー操作
+$('#ens').on('click',function(){
+	if($('#slideL').hasClass('off')){
+		$('#slideL').removeClass('off');
+		$('.slide-inner').animate({'marginRight':'400px'},300).addClass('on');
+	}else{
+		$('#slideL').addClass('off');
+		$('.slide-inner').animate({'marginRight':'0px'},300);
+	}
+});
+//左のコンテンツ用にウィンドウの高さを取得
+$(document).ready(function(){
+	fit();
+	$(window).resize(function(){
+		fit();
+	})
+	function fit(){
+		var h = $(window).height();
+		$('.slide-inner').css("height",h);
+	}
+});
 </script>
 
-	<form th:action="@{/buy}" method="POST">
-		<button type="submit">購入</button>
-	</form>
+<style type="text/css">
+/* 右にずれる親要素の設定*/
+#slideR {
+  z-index: 99;
+  cursor: pointer;
+  position: absolute;
+  top: 35%;
+  right: 180px;
+  background: #fff;
+  width: 1000px;
+  color: #000;
+  font-size: 16px;
+}
+/* サイドメニューの設定*/
+#slideL {
+  z-index:100;
+  cursor: pointer;
+  top: 0;
+  left: 400px;
+  width: 350px;
+  height: auto;
+  background: #fff;
+}
+#slideL .slide-inner {
+  overflow: auto;
+  overflow-x: hidden;
+  background: #e6e6fa;
+}
+#ens{
+	margin-left:5px;
+}
+
+/*ヘッダーの設定*/
+#header {
+	height: 110px; /*ヘッダーの高さ*/
+	width: 100%; /*ヘッダーの横幅*/
+	background-color: #40e0d0; /*ヘッダーの背景色*/
+	color: black; /*ヘッダーの文字の色*/
+}
+header p {
+	line-height: 0px; /*行の高さ*/
+	float: left; /*左に流す*/
+	font-size: 30px; /*文字の大きさ*/
+	margin-left: 150px; /*左にマージンを取っている*/
+}
+header a {
+	line-height: 180px; /*行の高さ*/
+	margin-left: -190px; /*左より*/
+}
+</style>
 </body>
 </html>

@@ -1,5 +1,8 @@
 package service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
@@ -28,11 +31,14 @@ public class LoginService {
 			info = mapper.findLoginInfo(userName, passWord, deleteFlg);
 			log.info("ログイン情報検索を終了します");
 
+			List<String> msgList = new ArrayList<String>();
+
 			// DBに登録あればログイン可能
 			if (info == null) {
 				info = new LoginInfo();
 				info.setResultCode(ConstCode.FAILE_CODE);
-				info.setMsg("新規登録してください。");
+				msgList.add("新規登録してください。");
+				info.setMsgList(msgList);
 			} else {
 				info.setResultCode(ConstCode.SUCCESS_CODE);
 			}
