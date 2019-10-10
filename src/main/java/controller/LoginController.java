@@ -19,6 +19,7 @@ import constCode.ConstCode;
 import dto.LoginInfo;
 import dto.UserInsertInfo;
 import form.LoginForm;
+import form.SearchForm;
 import form.UserInsertForm;
 import service.LoginService;
 import service.UserInsertService;
@@ -38,7 +39,12 @@ public class LoginController {
 	// ログ準備
 	Log log = LogFactory.getLog(LoginController.class);
 
-	// ログイン初期表示
+	/** ログイン初期表示
+	 *
+	 * @param model
+	 * @param form
+	 * @return
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginIndex(Model model, LoginForm form) {
 		form.setUserName("");
@@ -50,7 +56,12 @@ public class LoginController {
 		return "/login";
 	}
 
-	/** ログインボタン押下 */
+	/** ログインボタン押下
+	 *
+	 * @param model
+	 * @param form
+	 * @return
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(Model model, LoginForm form) {
 
@@ -66,19 +77,28 @@ public class LoginController {
 
 			// DB登録有無によって遷移先指定
 			if (ConstCode.SUCCESS_CODE.equals(form.getResultCode())) {
-				view = "/serch";
+				// search.html初期表示処理
+				view = "/search";
+				SearchForm searchForm = new SearchForm();
+				searchForm.setSearchName("");
+				model.addAttribute("searchForm", searchForm);
 			} else {
 				view = "/login";
+				form.setUserName("");
+				form.setPassWord("");
+				model.addAttribute("form", form);
+				model.addAttribute("msgList", form.getMsgList());
 			}
 		}
-		form.setUserName("");
-		form.setPassWord("");
-		model.addAttribute("form", form);
-		model.addAttribute("msgList", form.getMsgList());
 		return view;
 	}
 
-	/** */
+	/**
+	 * 登録画面初期表示
+	 * @param model
+	 * @param form
+	 * @return
+	 */
 	@RequestMapping(value = "/insertIndex", method = RequestMethod.POST)
 	public String insertIndex(Model model, UserInsertForm form) {
 		form.setUserName("");
@@ -90,7 +110,12 @@ public class LoginController {
 		return "/userInsert";
 	}
 
-	/** 新規登録押下 */
+	/** 新規登録押下
+	 *
+	 * @param model
+	 * @param form
+	 * @return
+	 */
 	@RequestMapping(value = "/userInsert", method = RequestMethod.POST)
 	public String userInsert(Model model, UserInsertForm form) {
 		UserInsertInfo info = new UserInsertInfo();
@@ -123,8 +148,12 @@ public class LoginController {
 	}
 
 
-	/**
-	 * 単項目チェックを行います
+	/** 単項目チェックを行います
+	 *
+	 * @param name
+	 * @param password
+	 * @param form
+	 * @return
 	 */
 	public boolean checkVal(String name, String password, UserInsertForm form) {
 		boolean judge = true;
@@ -142,8 +171,12 @@ public class LoginController {
 		return judge;
 	}
 
-	/**
-	 * 単項目チェックを行います
+	/**単項目チェックを行います
+	 *
+	 * @param name
+	 * @param password
+	 * @param form
+	 * @return
 	 */
 	public boolean checkVal(String name, String password, LoginForm form) {
 		boolean judge = true;

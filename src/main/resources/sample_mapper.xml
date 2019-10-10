@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <insert id="userInsert" parameterType="dto.UserInsertInfo">
  	insert into logininfo (userid, username, password, insertdate, deleteflg)
- 	values (#{userId}, #{userName}, #{passWord}, '2019/10/08 9:05:35.518', '0')
+ 		values (#{userId}, #{userName}, #{passWord}, '2019/10/08 9:05:35.518', '0')
  	</insert>
 
 	<select id="findMaxUserId" resultType="String">

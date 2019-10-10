@@ -1,7 +1,0 @@
-create table "public".logininfo (
-  userid character(6)
-  , username character varying(6)
-  , password character varying(6)
-  , insertdate timestamp(6) without time zone
-  , deleteflg character(1)
-);

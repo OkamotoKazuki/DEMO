@@ -1,0 +1,16 @@
+create table "public".logininfo (
+  userid character(6) not null
+  , username character varying(6)
+  , password character varying(6)
+  , insertdate timestamp(6) without time zone
+  , deleteflg character(1)
+  , primary key (userid)
+);
+create table "public".iteminfo (
+  itemid character(6) not null
+  , itemname character varying(6)
+  , itemprice character varying(6)
+  , insertdate timestamp(6) without time zone
+  , deleteflg character(1)
+  , primary key (itemid)
+);

@@ -23,5 +23,6 @@
   </environments>
   <mappers>
     <mapper resource="sample_mapper.xml"/>
+    <mapper resource="iteminfo_mapper.xml"/>
   </mappers>
 </configuration>

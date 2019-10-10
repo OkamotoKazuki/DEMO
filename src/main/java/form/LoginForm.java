@@ -13,16 +13,16 @@ public class LoginForm {
 	/** ユーザー名 */
 	private String userName;
 
-	/** ユーザー名 */
+	/** パスワード */
 	private String passWord;
 
 	/** 登録日 */
 	private String insertDate;
 
-	/** ユーザー名 */
+	/** 削除フラグ */
 	private String deleteFlg;
 
-	/** 認証コード */
+	/** 認証結果コード */
 	private String resultCode;
 
 	/** メッセージ */

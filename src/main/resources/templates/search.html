@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link href="/css/common.css" th:href="@{/css/common.css}" rel="stylesheet"></link>
+	<link href="/css/sideMenu.css" th:href="@{/css/sideMenu.css}" rel="stylesheet"></link>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="/js/sideMenu.js" th:src="@{/js/sideMenu.js}"></script>
+	<meta charset="UTF-8" />
+	<title></title>
+</head>
+<div id="header">
+	<div>ECサイトデモ</div>
+	<label for="menu" id="ens"><img src="/common/ens.jpg" width="30" height="30"></label>
+	<br><a href="http://localhost:8080/login">ログアウト</a>
+</div>
+<body>
+<div id="slideL" class="off">
+<!-- サイドバーの中身 start -->
+<div class="slide-inner">
+	<ul>
+		<li><a href="#">かつら</a></li>
+		<li><a href="#">育毛剤</a></li>
+		<li><a href="#">除草剤</a></li>
+	</ul>
+</div>
+<!-- サイドバーの中身 end -->
+<div id="slideR">
+	<section id="searchSec">
+		<form th:action="@{/searchResult}" method="POST">
+			<div th:object="${searchForm}">
+				<!-- 検索ボタン -->
+				<input type="text" th:field="*{searchName}"/><button type="submit"><img src="/common/seo.png" id="seacrhBu"/></button>
+			</div>
+		</form>
+	</section>
+</div>
+</div>
+<script>
+// サイドメニュー操作
+$('#ens').on('click',function(){
+	if($('#slideL').hasClass('off')){
+		$('#slideL').removeClass('off');
+		$('.slide-inner').animate({'marginRight':'400px'},300).addClass('on');
+	}else{
+		$('#slideL').addClass('off');
+		$('.slide-inner').animate({'marginRight':'0px'},300);
+	}
+});
+//左のコンテンツ用にウィンドウの高さを取得
+$(document).ready(function(){
+	fit();
+	$(window).resize(function(){
+		fit();
+	})
+	function fit(){
+		var h = $(window).height();
+		$('.slide-inner').css("height",h);
+	}
+});
+</script>
+</body>
+</html>

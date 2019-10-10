@@ -1,0 +1,30 @@
+/* 右にずれる親要素の設定*/
+#slideR {
+  z-index: 99;
+  cursor: pointer;
+  position: absolute;
+  top: 150px;/* 検索テキストの高さ設定*/
+  right: 180px;
+  background: #fff;
+  width: 1000px;
+  color: #000;
+  font-size: 16px;
+}
+/* サイドメニューの設定*/
+#slideL {
+  z-index:100;
+  cursor: pointer;
+  top: 0;
+  left: 400px;
+  width: 350px;
+  height: auto;
+  background: #fff;
+}
+#slideL .slide-inner {
+  overflow: auto;
+  overflow-x: hidden;
+  background: #e9ffd4;
+}
+#ens{
+	margin-left:5px;
+}

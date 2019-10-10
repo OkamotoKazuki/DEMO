@@ -1,0 +1,31 @@
+/*ヘッダーの設定*/
+#header {
+	height: 110px; /*ヘッダーの高さ*/
+	width: 100%; /*ヘッダーの横幅*/
+	background-color: #7fffd4; /*ヘッダーの背景色*/
+	color: black; /*ヘッダーの文字の色*/
+}
+header p {
+	line-height: 0px; /*行の高さ*/
+	float: left; /*左に流す*/
+	font-size: 30px; /*文字の大きさ*/
+	margin-left: 150px; /*左にマージンを取っている*/
+}
+header a {
+	line-height: 180px; /*行の高さ*/
+	margin-left: -190px; /*左より*/
+}
+#seacrhBu {
+	height: 20px;
+	width: 20px;
+}
+#searchName {
+	height: 20px;
+	width: 700px;
+	float: left;
+	padding-top: 4px;/*テキストボックスの縦の高さ*/
+}
+
+#seacrhSec {
+	margin-top:-40px;
+}
