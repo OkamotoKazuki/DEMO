@@ -43,7 +43,7 @@ public class SearchController {
 		String view = null;
 
 		log.info("商品検索サービスを開始します");
-		ArrayList<ItemInfo> infoList = searchService.ltemSerch(info);
+		List<ItemInfo> infoList = searchService.ltemSerch(info);
 		log.info("商品検索サービスを終了します");
 
 		List<SearchResultForm> searchFormList = new ArrayList<SearchResultForm>();

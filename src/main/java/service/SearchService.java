@@ -1,6 +1,7 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -18,10 +19,10 @@ public class SearchService {
 	/** ログ準備 */
 	Log log = LogFactory.getLog(SearchService.class);
 
-	public ArrayList<ItemInfo> ltemSerch(ItemInfo info) {
+	public List<ItemInfo> ltemSerch(ItemInfo info) {
 		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
 
-		ArrayList<ItemInfo> infoList = null;
+		List<ItemInfo> infoList = null;
 		try {
 			// ログイン情報をDBから取得
 			ItemInfoSqlCommon mapper = sqlSession.getMapper(ItemInfoSqlCommon.class);

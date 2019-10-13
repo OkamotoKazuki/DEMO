@@ -38,9 +38,11 @@ public class UserInsertService {
 			sqlSession.commit();
 
 			// 登録内容確認
-			mapper.findLoginInfo(info.getUserName(), info.getUserId(), "0");
+			if (result) {
+				info.setResultCode(ConstCode.SUCCESS_CODE);
+			} else {
 
-			info.setResultCode(ConstCode.SUCCESS_CODE);
+			}
 		} finally {
 			sqlSession.close();
 		}

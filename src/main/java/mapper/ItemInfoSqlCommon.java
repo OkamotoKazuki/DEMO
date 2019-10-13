@@ -1,6 +1,6 @@
 package mapper;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.mybatis.spring.annotation.MapperScan;
 
@@ -14,7 +14,7 @@ import dto.ItemInfo;
 public interface ItemInfoSqlCommon {
 
 	/** 商品情報検索 */
-	ArrayList<ItemInfo> itemSearch(ItemInfo info);
+	List<ItemInfo> itemSearch(ItemInfo info);
 
 	/** 商品購入更新 */
 	void itemUpdate(String stock, String itemId);
