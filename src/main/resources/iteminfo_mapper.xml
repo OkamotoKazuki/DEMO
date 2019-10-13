@@ -4,7 +4,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.ItemInfoSqlCommon">
-	<select id="itemSearch" resultType="dto.ItemInfo" >
-		select * from iteminfo <!-- where itemname = #{searchName} parameterType="string"-->
+	<select id="itemSearch" resultType="dto.ItemInfo">
+		select * from iteminfo
+		<if test="searchName != null">
+			where itemName like '%' || #{searchName} || '%'
+			<!-- , -->
+		</if>
+	</select>
+
+	<update id="itemUpdate">
+		update iteminfo set stock = #{stock}
+		where itemid = #{itemId}
+	</update>
+
+		<select id="findItemId" resultType="dto.ItemInfo">
+		select * from iteminfo
+		where itemname = #{itemName}
 	</select>
 </mapper>

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import constCode.ConstCode;
 import dto.ItemInfo;
-import form.BuyForm;
 import form.SearchForm;
 import form.SearchResultForm;
 import service.SearchService;
@@ -70,24 +69,6 @@ public class SearchController {
 		}
 		return view;
 	}
-
-
-	/** 購入ボタン押下
-	 *
-	 * @param model
-	 * @param form
-	 * @return
-	 */
-	@RequestMapping(value = "/buy", method = RequestMethod.POST)
-	public Model buy(Model model, BuyForm form) {
-
-
-
-
-		return model;
-	}
-
-
 
 
 

@@ -31,7 +31,7 @@ public class UserInsertService {
 			info.setUserId(String.valueOf(userId));
 
 			log.info("新規ユーザー情報登録を開始します");
-			mapper.userInsert(info);
+			boolean result = mapper.userInsert(info);
 			log.info("新規ユーザー情報登録を終了します");
 
 			// コミット

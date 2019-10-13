@@ -20,6 +20,9 @@ public class ItemInfo {
 	/** 登録日 */
 	private String insertDate;
 
+	/** 在庫 */
+	private String stock;
+
 	/** 削除フラグ */
 	private String deleteFlg;
 

@@ -1,3 +1,4 @@
+/* */
 /*ヘッダーの設定*/
 #header {
 	height: 110px; /*ヘッダーの高さ*/
@@ -28,4 +29,9 @@ header a {
 
 #seacrhSec {
 	margin-top:-40px;
+}
+/* */
+#itemLi {
+	list-style: none;/* 箇条書きスタイル無効 */
+	/* text-align: left;文字左寄せ */
 }

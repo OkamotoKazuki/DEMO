@@ -17,7 +17,7 @@
 <div id="slideL" class="off">
 <!-- サイドバーの中身 start -->
 <div class="slide-inner">
-	<ul>
+	<ul id="itemLi">
 		<li><a href="#">かつら</a></li>
 		<li><a href="#">育毛剤</a></li>
 		<li><a href="#">除草剤</a></li>
@@ -35,13 +35,12 @@
 	<section>
 	<h3>検索結果</h3>
 	<p th:if="${param.error}">Error!</p>
-	<form th:action="@{/serchResult}" method="POST">
+	<form th:action="@{/serchResult}" method="POST" id="serchResult">
 		<table>
 			<tr>
 				<td>No</td>
 				<td>商品名</td>
 				<td>価格</td>
-				<td><button type="submit">検索</button></td>
 			</tr>
 
 			<script>
@@ -63,12 +62,18 @@
 		</table>
 	</form>
 	<form th:action="@{/buy}" method="POST">
-			<button type="submit">購入</button>
+			<button type="button" onclick="buy()">購入</button>
 	</form>
 	</section>
 </div>
 </div>
 <script>
+// 購入ボタン押下
+function buy() {
+	$('#serchResult').attr('action', "/buy");
+	$('#serchResult').submit();
+}
+
 // サイドメニュー操作
 $('#ens').on('click',function(){
 	if($('#slideL').hasClass('off')){
