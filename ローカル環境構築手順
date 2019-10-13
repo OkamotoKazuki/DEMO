@@ -1,4 +1,5 @@
 1.posgresSQLダウンロード
+設定値は4の手順参考
 参考
 https://rowingfan.hatenablog.jp/entry/2018/04/15/140000
 
@@ -12,12 +13,13 @@ https://rowingfan.hatenablog.jp/entry/2018/04/15/140000
 3.psql上で(一旦posttgresという名前を指定)
 コマンドプロンプト起動
 psql -U postgres
+パスワードは「posgresSQLダウンロード」時のパスワード
 create database postgres;
 
 4.A5:Mk-2 SQL設定
 サーバー名：localhost
 データベース名：postgres
-ユーザーID：postgres ※postgresインストール時に決めた名前、パスワード
+ユーザーID：postgres ※postgresダウンロード時に決めた名前、パスワード
 パスワード：postgres
 ポート番号：5432
 

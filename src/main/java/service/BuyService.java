@@ -35,7 +35,7 @@ public class BuyService {
 			log.info("商品情報検索を終了します");
 
 			// 在庫数確認
-			if (ConstCode.ZERO.equals(infoList.get(0).getStock())) {
+			if (ConstCode.ZERO.equals(stock)) {
 				info.setResultCode(ConstCode.FAILE_CODE);
 				info.setMsg("在庫がありません。");
 			} else {
