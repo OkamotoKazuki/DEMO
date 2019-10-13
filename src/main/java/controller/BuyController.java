@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import constCode.ConstCode;
 import dto.ItemInfo;
 import form.BuyForm;
 import service.BuyService;
@@ -38,15 +39,16 @@ public class BuyController {
 		String view = null;
 
 		log.info("商品検索サービスを開始します");
-//		info = buyService.buyltem(info);
+		info = buyService.buyItem(info);
 		log.info("商品検索サービスを終了します");
 
-
-
-
-		view = "/seachResult";
-		view = "/buyComplete";
-
+		// DB更新有無によって遷移先指定
+		if (ConstCode.SUCCESS_CODE.equals(info.getResultCode())) {
+			view = "/buyComplete";
+		} else {
+			view = "/seachResult";
+			model.addAttribute("msg", info.getMsg());
+		}
 		return view;
 	}
 }

@@ -11,7 +11,7 @@ public class ConstCode {
 	/** 0:失敗 */
 	public static final String FAILE_CODE = "0";
 	/** 1 */
-	public static final String ONE = "1";
+	public static final int ONE = 1;
 	/** 0 */
-	public static final String ZERO = "0";
+	public static final int ZERO = 0;
 }

@@ -17,7 +17,7 @@ public interface ItemInfoSqlCommon {
 	List<ItemInfo> itemSearch(ItemInfo info);
 
 	/** 商品購入更新 */
-	void itemUpdate(String stock, String itemId);
+	void itemUpdate(int stock, String itemId);
 
 	/** itemId取得 */
 	String findItemId(String ItemName);

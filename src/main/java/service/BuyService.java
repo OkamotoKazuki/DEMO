@@ -18,7 +18,7 @@ public class BuyService {
 	/** ログ準備 */
 	Log log = LogFactory.getLog(BuyService.class);
 
-	public ItemInfo buyltem(ItemInfo info) {
+	public ItemInfo buyItem(ItemInfo info) {
 		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
 
 		List<ItemInfo> infoList = null;
@@ -30,17 +30,18 @@ public class BuyService {
 			infoList = mapper.itemSearch(info);
 
 			String itemId = infoList.get(0).getItemId();
-			String stock = infoList.get(0).getStock();
+			int stock = infoList.get(0).getStock();
 
 			log.info("商品情報検索を終了します");
 
 			// 在庫数確認
-			if (ConstCode.ZERO.equals(stock)) {
+			if (ConstCode.ZERO == stock) {
 				info.setResultCode(ConstCode.FAILE_CODE);
 				info.setMsg("在庫がありません。");
 			} else {
+				stock--;
 				log.info("商品情報更新を開始します");
-				mapper.itemUpdate(itemId, stock);
+				mapper.itemUpdate(stock, itemId);
 				log.info("商品情報更新を終了します");
 
 				sqlSession.commit();

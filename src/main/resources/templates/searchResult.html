@@ -34,7 +34,7 @@
 	</section>
 	<section>
 	<h3>検索結果</h3>
-	<p th:if="${param.error}">Error!</p>
+	<p th:value="${msg}" name="${msg}">Error!</p>
 	<form th:action="@{/serchResult}" method="POST" id="serchResult">
 		<table>
 			<tr>

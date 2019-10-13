@@ -13,8 +13,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<update id="itemUpdate">
-		update iteminfo set stock = #{stock}
-		where itemid = #{itemId}
+		update iteminfo set stock = #{param1}
+		where itemid = #{param2}
 	</update>
 
 		<select id="findItemId" resultType="dto.ItemInfo">

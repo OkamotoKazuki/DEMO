@@ -21,7 +21,7 @@ public class ItemInfo {
 	private String insertDate;
 
 	/** 在庫 */
-	private String stock;
+	private int stock;
 
 	/** 削除フラグ */
 	private String deleteFlg;

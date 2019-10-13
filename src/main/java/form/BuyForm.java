@@ -15,7 +15,7 @@ public class BuyForm {
 	private String itemPrice;
 
 	/** 在庫 */
-	private String stock;
+	private int stock;
 
 	/** 商品選択状況 */
 	private String itemCheck;
