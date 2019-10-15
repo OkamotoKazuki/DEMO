@@ -41,7 +41,7 @@ public class UserInsertService {
 			if (result) {
 				info.setResultCode(ConstCode.SUCCESS_CODE);
 			} else {
-
+				info.setResultCode(ConstCode.FAILE_CODE);
 			}
 		} finally {
 			sqlSession.close();

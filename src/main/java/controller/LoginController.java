@@ -49,6 +49,7 @@ public class LoginController {
 	public String loginIndex(Model model, LoginForm form) {
 		form.setUserName("");
 		form.setPassWord("");
+		form.setResultCode(ConstCode.FAILE_CODE);// トースト非表示
 		form.setMsgList(new ArrayList<String>());
 
 		model.addAttribute("form", form);
@@ -65,31 +66,36 @@ public class LoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(Model model, LoginForm form) {
 
-		String view = null;
+		String view = "/login";
+		LoginInfo info = null;
 		// 単項目の結果が以上の場合エラーを表示して画面表示
 		if (this.checkVal(form.getUserName(), form.getPassWord(), form)) {
 
 			log.info("ログインサービスを開始します");
-			LoginInfo info = loginService.loginInfoSerch(form.getUserName(), form.getPassWord(), "0");
+			info = loginService.loginInfoSerch(form.getUserName(), form.getPassWord(), "0");
 			log.info("ログインサービスを終了します");
-
-			BeanUtils.copyProperties(info, form);
 
 			// DB登録有無によって遷移先指定
 			if (ConstCode.SUCCESS_CODE.equals(form.getResultCode())) {
+				BeanUtils.copyProperties(info, form);
+
 				// search.html初期表示処理
 				view = "/search";
 				SearchForm searchForm = new SearchForm();
 				searchForm.setSearchName("");
 				model.addAttribute("searchForm", searchForm);
 			} else {
-				view = "/login";
-				form.setUserName("");
-				form.setPassWord("");
-				model.addAttribute("form", form);
-				model.addAttribute("msgList", form.getMsgList());
+				if (form.getUserName() == null) {
+					form.setUserName("");
+				}
+				if (form.getPassWord() == null) {
+					form.setUserName("");
+				}
 			}
+		} else {
+			model.addAttribute("msgList", form.getMsgList());
 		}
+		model.addAttribute("form", form);
 		return view;
 	}
 
@@ -123,25 +129,30 @@ public class LoginController {
 		BeanUtils.copyProperties(form, info);
 
 		String view = "/userInsert";
+		UserInsertInfo info2 = new UserInsertInfo();
 
 		// 単項目の結果が以上の場合エラーを表示して画面表示
 		if (this.checkVal(form.getUserName(), form.getPassWord(), form)) {
 
 			log.info("新規ユーザー登録サービスを開始します");
-			UserInsertInfo info2 =userInsertService.userInsert(info);
+			info2 = userInsertService.userInsert(info);
 			log.info("新規ユーザー登録サービスを終了します");
 
-			BeanUtils.copyProperties(info2, form);
-
 			// DB登録有無によって遷移先指定
-			if (ConstCode.SUCCESS_CODE.equals(form.getResultCode())) {
+			if (ConstCode.SUCCESS_CODE.equals(info2.getResultCode())) {
+				BeanUtils.copyProperties(info2, form);
+				form.setResultCode(ConstCode.SUCCESS_CODE); // トースト表示
 				view = "/login";
 			} else {
+				if (form.getUserName() == null) {
+					form.setUserName("");
+				}
+				if (form.getPassWord() == null) {
+					form.setUserName("");
+				}
 				view = "/userInsert";
 			}
 		}
-		form.setUserName("");
-		form.setPassWord("");
 		model.addAttribute("form", form);
 		model.addAttribute("msgList", form.getMsgList());
 		return view;
@@ -160,7 +171,7 @@ public class LoginController {
 
 		List<String> msgList = new ArrayList<String>();
 		if (StringUtils.isEmpty(name)) {
-			msgList.add("名前が入力されていません。");
+			msgList.add("ユーザー名が入力されていません。");
 			judge = false;
 		}
 		if (StringUtils.isEmpty(password)) {
@@ -183,7 +194,7 @@ public class LoginController {
 
 		List<String> msgList = new ArrayList<String>();
 		if (StringUtils.isEmpty(name)) {
-			msgList.add("名前が入力されていません。");
+			msgList.add("ユーザー名が入力されていません。");
 			judge = false;
 		}
 		if (StringUtils.isEmpty(password)) {

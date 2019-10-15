@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<link href="/css/login.css" th:href="@{/css/login.css}" rel="stylesheet"/>
+	<script src="https://riversun.github.io/jsframe/jsframe.js"></script><!-- トースト用 -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<meta charset="UTF-8" />
 	<title></title>
 </head>
@@ -13,8 +15,8 @@
 		<div id="inner">
 			<div id="tablecell">
 				<h3 id="h3">ログイン</h3>
-				<form th:action="@{/login}" method="POST">
-					<table>
+				<form th:action="@{/login}" method="POST" id="loginForm">
+					<table th:if="${msgList}"><!-- th;ifでmsgListがnullの場合テーブルは表示されない -->
 						<tr th:each="msg : ${msgList}">
 							<td th:text="${msg}"></td>
 						</tr>
@@ -30,10 +32,13 @@
 							<td><label for="passWord" id="passWordLa">パスワード</label></td>
 						</tr>
 						<tr>
-							<td><input type="text" th:field="*{passWord}"/></td>
+							<td>
+								<input type="text" th:field="*{passWord}"/>
+								<input type="hidden" th:field="*{resultCode}"/>
+							</td>
 						</tr>
 						<tr>
-							<td><button type="submit" id="loginBu">ログイン</button></td>
+							<td><button type="submit" id="loginBu" onclick="valueSave()">ログイン</button></td>
 						</tr>
 					</table>
 				</form>
@@ -42,6 +47,20 @@
 				</form>
 			</div>
 		</div>
-	</div>
+	</div>]
+<script>
+$(document).ready(function(){
+	window.onload = function(){
+		// 登録完了後トーストを表示する
+		const jsFrame = new JSFrame();
+		var resultCode = document.getElementById("resultCode").value;
+		if (resultCode === '1') {
+			jsFrame.showToast({
+		    	html: '登録が完了しました。', align: 'top', duration: 1500
+			});
+		}
+	}
+});
+</script>
 </body>
 </html>
