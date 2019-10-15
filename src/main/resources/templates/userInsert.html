@@ -1,36 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<link href="/css/header.css" th:href="@{/css/header.css}" rel="stylesheet"></link>
+	<link href="/css/header.css" th:href="@{/css/header.css}" rel="stylesheet"/>
+	<link href="/css/userInsert.css" th:href="@{/css/userInsert.css}" rel="stylesheet"/>
 	<meta charset="UTF-8" />
 	<title></title>
 </head>
-<div id="header">
+<div id="header" style="text-align:center;">
 	<div>ECサイトデモ</div>
-		<a href="localhost:8080/login">ログイン</a>
+	<a href="http://localhost:8080/login">ログイン</a>
 </div>
 <body>
-	<h3>ユーザー登録フォーム</h3>
-	<form th:action="@{/userInsert}" method="POST">
-		<table>
-			<tr th:each="msg : ${msgList}">
-				<td th:text="${msg}"></td>
-			</tr>
-		</table>
-		<table>
-			<tr th:object="${form}">
-				<td><label for="userName">名前:</label></td>
-				<td><input type="text" th:field="*{userName}"/></td>
-			</tr>
-			<tr th:object="${form}">
-				<td><label for="passWord">パスワード:</label></td>
-				<td><input type="text" th:field="*{passWord}"/></td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td><button type="submit">登録</button></td>
-			</tr>
-		</table>
-	</form>
+	<div id="parent">
+		<div id="inner">
+			<div id="tablecell">
+				<h3 id="h3">アカウントを作成</h3>
+				<form th:action="@{/userInsert}" method="POST">
+					<table>
+						<tr th:each="msg : ${msgList}">
+							<td th:text="${msg}"></td>
+						</tr>
+					</table>
+					<table th:object="${form}" id="insertTa">
+						<tr>
+							<td><label for="userName" id="userNameLa">名前</label></td>
+						</tr>
+						<tr>
+							<td><input type="text" th:field="*{userName}"/></td>
+						</tr>
+						<tr>
+							<td><label for="passWord" id="passWordLa">パスワード</label></td>
+						</tr>
+						<tr>
+							<td><input type="text" th:field="*{passWord}"/></td>
+						</tr>
+						<tr>
+							<td><button type="submit" id="insertBu">アカウントを作成</button></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

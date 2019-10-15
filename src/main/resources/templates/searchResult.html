@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<link href="/css/common.css" th:href="@{/css/common.css}" rel="stylesheet"></link>
-	<link href="/css/sideMenu.css" th:href="@{/css/sideMenu.css}" rel="stylesheet"></link>
+	<link href="/css/common.css" th:href="@{/css/common.css}" rel="stylesheet"/>
+	<link href="/css/sideMenu.css" th:href="@{/css/sideMenu.css}" rel="stylesheet"/>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="/js/sideMenu.js" th:src="@{/js/sideMenu.js}"></script>
 	<meta charset="UTF-8" />
@@ -34,7 +34,7 @@
 	</section>
 	<section>
 	<h3>検索結果</h3>
-	<p th:value="${msg}" name="${msg}">Error!</p>
+	<p th:value="${msg}" >Error!</p><!-- name="${msg}" -->
 	<form th:action="@{/serchResult}" method="POST" id="serchResult">
 		<table>
 			<tr>

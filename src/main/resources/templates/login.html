@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<link href="/css/login.css" th:href="@{/css/login.css}" rel="stylesheet"></link>
-<meta charset="UTF-8" />
-<title></title>
+	<link href="/css/login.css" th:href="@{/css/login.css}" rel="stylesheet"/>
+	<meta charset="UTF-8" />
+	<title></title>
 </head>
 <div id="header">
 	<div style="text-align:center;">ECサイトデモ</div>
@@ -24,13 +24,13 @@
 							<td><label for="userName" id="userNameLa">ユーザー名</label></td>
 						</tr>
 						<tr>
-							<td><input type="text" th:field="*{userName}" /></td>
+							<td><input type="text" th:field="*{userName}"/></td>
 						</tr>
 						<tr>
 							<td><label for="passWord" id="passWordLa">パスワード</label></td>
 						</tr>
 						<tr>
-							<td><input type="text" th:field="*{passWord}" /></td>
+							<td><input type="text" th:field="*{passWord}"/></td>
 						</tr>
 						<tr>
 							<td><button type="submit" id="loginBu">ログイン</button></td>

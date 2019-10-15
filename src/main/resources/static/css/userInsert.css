@@ -22,7 +22,7 @@
 #userName, #passWord {
 	text-align: left;
 }
-#loginTa, #h3 {
+#insertTa, #h3 {
 	width: 250px;
 	/* 要素の左右に30pxの余白設定 */
 	margin-left: 30px;
@@ -31,19 +31,13 @@
 #h3 {
 	text-align: left;
 }
-#loginBu, #userName, #passWord {
+#insertBu, #userName, #passWord {
 	width: 250px;
-}
-#loginBu {
-	background : #f0c14b;/* アマゾンぽい色 */
-	margin-top: 30px;
-	width: 254px;
 }
 #insertBu {
 	margin-top: 50px;
-	margin-left: 34px; /* 左寄せ */
 	width: 254px;
 }
-#insertBu, #loginBu {
+#insertBu {
 	border-radius: 3px;/* ボタン丸み */
 }
