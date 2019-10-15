@@ -1,0 +1,46 @@
+#parent{
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}
+#inner{
+   display:inline-block;
+  /*  padding:10px; */
+   border: 1px dashed #ccc;
+}
+#tablecell{
+  border: 1px solid #aaa;
+  text-align: left;
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  height: 450px;
+}
+#userName, #passWord {
+	text-align: left;
+}
+#loginTa, #h3 {
+	width: 250px;
+	/* 要素の左右に30pxの余白設定 */
+	margin-left: 30px;
+	margin-right: 30px;
+}
+#h3 {
+	text-align: left;
+}
+#userNameLa, #passWordLa {
+	margin-top: 15px;  /* 上要素との余白 */
+}
+#loginBu, #userName, #passWord {
+	width: 250px;
+}
+#loginBu {
+	background : #f0c14b;
+	margin-top: 30px;
+	width: 254px;
+}
+#insertBu {
+	margin-top: 50px;
+	margin-left: 34px; /* 左寄せ */
+	width: 254px;
+}
