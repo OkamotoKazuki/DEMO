@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<link href="/css/login.css" th:href="@{/css/login.css}" rel="stylesheet"/>
-	<script src="https://riversun.github.io/jsframe/jsframe.js"></script><!-- トースト用 -->
+	<script src="https://riversun.github.io/jsframe/jsframe.js"></script><!-- トースト用暫定表示 -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<meta charset="UTF-8" />
 	<title></title>
@@ -58,6 +58,7 @@ $(document).ready(function(){
 			jsFrame.showToast({
 		    	html: '登録が完了しました。', align: 'top', duration: 1500
 			});
+			document.getElementById("resultCode").value = '0';
 		}
 	}
 });

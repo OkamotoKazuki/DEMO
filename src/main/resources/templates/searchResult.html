@@ -34,7 +34,9 @@
 	</section>
 	<section>
 	<h3>検索結果</h3>
-	<p th:value="${msg}" >Error!</p><!-- name="${msg}" -->
+	<div th:if="${msg}">
+		<p th:text="${msg}"></p>
+	</div>
 	<form th:action="@{/serchResult}" method="POST" id="serchResult">
 		<table>
 			<tr>
