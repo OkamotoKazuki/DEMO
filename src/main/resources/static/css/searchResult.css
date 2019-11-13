@@ -1,0 +1,10 @@
+#searchResultSe {
+	top:140px;
+	z-index: 99;
+	cursor: pointer;
+	position: absolute;
+	right: 180px;
+	width: 1000px;
+	color: #000;
+	font-size: 16px;
+}

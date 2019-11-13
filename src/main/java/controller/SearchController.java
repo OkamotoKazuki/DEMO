@@ -9,6 +9,8 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,13 +22,15 @@ import form.SearchForm;
 import form.SearchResultForm;
 import service.SearchService;
 
+@ComponentScan("service")
 @Controller
 public class SearchController {
 
 	// ログ準備
 	Log log = LogFactory.getLog(SearchController.class);
 
-	SearchService searchService = new SearchService();
+	@Autowired
+	SearchService searchService;
 
 	/** 検索ボタン押下
 	 *
@@ -43,16 +47,16 @@ public class SearchController {
 		String view = null;
 
 		log.info("商品検索サービスを開始します");
-		List<ItemInfo> infoList = searchService.ltemSerch(info);
+		List<ItemInfo> infoList = searchService.ltemSearch(info);
 		log.info("商品検索サービスを終了します");
 
 		List<SearchResultForm> searchFormList = new ArrayList<SearchResultForm>();
 
 		// 検索結果をformに設定
 		for (ItemInfo item : infoList) {
-			SearchResultForm serchForm = new SearchResultForm();
-			BeanUtils.copyProperties(item, serchForm);
-			searchFormList.add(serchForm);
+			SearchResultForm searchForm = new SearchResultForm();
+			BeanUtils.copyProperties(item, searchForm);
+			searchFormList.add(searchForm);
 		}
 
 		SearchForm searchForm = new SearchForm();

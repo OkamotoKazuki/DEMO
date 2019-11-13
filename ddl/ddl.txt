@@ -16,6 +16,21 @@ create table "public".iteminfo (
   , primary key (itemid)
 );
 INSERT
+INTO "public".logininfo(
+  userid
+  , username
+  , password
+  , insertdate
+  , deleteflg
+)
+VALUES (
+  '0001'
+  , 'a'
+  , 'a'
+  , '2019/10/18 7:07:11.538'
+  , '0'
+)
+INSERT
 INTO "public".iteminfo(
   itemid
   , itemname

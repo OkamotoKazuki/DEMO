@@ -9,6 +9,8 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -28,13 +30,16 @@ import service.UserInsertService;
  * @author PC
  *
  */
+//serviceパッケージをDIできるようにする
+@ComponentScan("service")
 @Controller
 public class LoginController {
 
-	//@Autowired
-	LoginService loginService = new LoginService();
+	@Autowired
+	LoginService loginService;
 
-	UserInsertService userInsertService = new UserInsertService();
+	@Autowired
+	UserInsertService userInsertService;
 
 	// ログ準備
 	Log log = LogFactory.getLog(LoginController.class);
@@ -72,11 +77,11 @@ public class LoginController {
 		if (this.checkVal(form.getUserName(), form.getPassWord(), form)) {
 
 			log.info("ログインサービスを開始します");
-			info = loginService.loginInfoSerch(form.getUserName(), form.getPassWord(), "0");
+			info = loginService.loginInfoSearch(form.getUserName(), form.getPassWord(), "0");
 			log.info("ログインサービスを終了します");
 
 			// DB登録有無によって遷移先指定
-			if (ConstCode.SUCCESS_CODE.equals(form.getResultCode())) {
+			if (ConstCode.SUCCESS_CODE.equals(info.getResultCode())) {
 				BeanUtils.copyProperties(info, form);
 
 				// search.html初期表示処理

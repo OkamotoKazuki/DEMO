@@ -19,7 +19,7 @@ public class LoginService {
 	/** ログ準備 */
 	Log log = LogFactory.getLog(LoginService.class);
 
-	public LoginInfo loginInfoSerch(String userName, String passWord, String deleteFlg) {
+	public LoginInfo loginInfoSearch(String userName, String passWord, String deleteFlg) {
 		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
 
 		LoginInfo info = null;

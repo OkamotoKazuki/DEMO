@@ -19,7 +19,7 @@ public class SearchService {
 	/** ログ準備 */
 	Log log = LogFactory.getLog(SearchService.class);
 
-	public List<ItemInfo> ltemSerch(ItemInfo info) {
+	public List<ItemInfo> ltemSearch(ItemInfo info) {
 		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
 
 		List<ItemInfo> infoList = null;

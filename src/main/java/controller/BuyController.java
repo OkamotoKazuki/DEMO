@@ -6,6 +6,8 @@ package controller;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,13 +18,15 @@ import dto.ItemInfo;
 import form.BuyForm;
 import service.BuyService;
 
+@ComponentScan("service")
 @Controller
 public class BuyController {
 
 	// ログ準備
 	Log log = LogFactory.getLog(BuyController.class);
 
-	BuyService buyService = new BuyService();
+	@Autowired
+	BuyService buyService;
 
 	/** 購入ボタン押下
 	 *

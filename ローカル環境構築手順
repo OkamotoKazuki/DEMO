@@ -12,9 +12,9 @@ https://rowingfan.hatenablog.jp/entry/2018/04/15/140000
 
 3.psql上で(一旦posttgresという名前を指定)
 コマンドプロンプト起動
+cd C:\Program Files\PostgreSQL\10\bin
 psql -U postgres
-パスワードは「posgresSQLダウンロード」時のパスワード
-create database postgres;
+create database postgres; パスワードは「posgresSQLダウンロード」時のパスワード
 
 4.A5:Mk-2 SQL設定
 サーバー名：localhost

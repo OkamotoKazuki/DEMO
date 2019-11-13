@@ -1,11 +1,12 @@
 /* 右にずれる親要素の設定*/
 #slideR {
+  margin-top: 5px;
   z-index: 99;
   cursor: pointer;
   position: absolute;
-  top: 150px;/* 検索テキストの高さ設定*/
+  top: 20px;/* 検索テキストの高さ設定*/
   right: 180px;
-  background: #fff;
+  background: #7fffd4;
   width: 1000px;
   color: #000;
   font-size: 16px;
@@ -16,7 +17,7 @@
   cursor: pointer;
   top: 0;
   left: 400px;
-  width: 350px;
+  width: 320px;
   height: auto;
   background: #fff;
 }
@@ -25,6 +26,16 @@
   overflow-x: hidden;
   background: #e9ffd4;
 }
-#ens{
+#ens {
+	width:25px;
+	height:25px;
+	margin-top:5px;
+}
+#ensLa {
+	width:35px;
+	height:35px;
 	margin-left:5px;
+	margin-bottom: 5px;
+	border:solid #000000;
+	background:#ffffff;
 }

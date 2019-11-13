@@ -1,102 +1,114 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<link href="/css/common.css" th:href="@{/css/common.css}" rel="stylesheet"/>
-	<link href="/css/sideMenu.css" th:href="@{/css/sideMenu.css}" rel="stylesheet"/>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script src="/js/sideMenu.js" th:src="@{/js/sideMenu.js}"></script>
-	<meta charset="UTF-8" />
-	<title></title>
+<link href="/css/common.css" th:href="@{/css/common.css}" rel="stylesheet" />
+<link href="/css/sideMenu.css" th:href="@{/css/sideMenu.css}" rel="stylesheet" />
+<link href="/css/searchResult.css" th:href="@{/css/searchResult.css}" rel="stylesheet" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/js/sideMenu.js" th:src="@{/js/sideMenu.js}"></script>
+<meta charset="UTF-8" />
+<title></title>
 </head>
 <div id="header">
-	<div>ECサイトデモ</div>
-	<label for="menu" id="ens"><img src="/common/ens.jpg" width="30" height="30"></label>
-	<br><a href="http://localhost:8080/login">ログアウト</a>
+	<div id="ensLa"><label for="menu" ><img src="/common/ens.jpg" id="ens"></label></div>
+		<div>ECサイトデモ</div>
+	<a href="http://localhost:8080/login">ログアウト</a>
 </div>
 <body>
-<div id="slideL" class="off">
-<!-- サイドバーの中身 start -->
-<div class="slide-inner">
-	<ul id="itemLi">
-		<li><a href="#">かつら</a></li>
-		<li><a href="#">育毛剤</a></li>
-		<li><a href="#">除草剤</a></li>
-	</ul>
-</div>
-<!-- サイドバーの中身 end -->
-<div id="slideR">
-	<section id="searchSec">
-		<form th:action="@{/searchResult}" method="POST">
-			<div th:object="${searchForm}">
-				<input type="text" th:field="*{searchName}"/><button type="submit"><img src="/common/seo.png" id="seacrhBu"/></button>
-			</div>
-		</form>
-	</section>
-	<section>
-	<h3>検索結果</h3>
-	<div th:if="${msg}">
-		<p th:text="${msg}"></p>
+	<div id="slideL" class="off">
+		<!-- サイドバーの中身 start -->
+		<div class="slide-inner">
+			<ul id="itemLi">
+				<li><a href="#">かつら</a></li>
+				<li><a href="#">育毛剤</a></li>
+				<li><a href="#">除草剤</a></li>
+			</ul>
+		</div>
+		<!-- サイドバーの中身 end -->
+		<div id="slideR">
+			<section id="searchSec">
+				<form th:action="@{/searchResult}" method="POST">
+					<div th:object="${searchForm}">
+						<input type="text" th:field="*{searchName}" />
+						<button type="submit" id="searchSu">
+							<img src="/common/seo.png" id="seacrhBu" />
+						</button>
+					</div>
+				</form>
+			</section>
+		</div>
+			<section id="searchResultSe">
+				<!-- ■■■■■検索結果 start ■■■■■ -->
+					<h3>検索結果</h3>
+					<div th:if="${msg}">
+						<p th:text="${msg}"></p>
+					</div>
+					<form th:action="@{/searchResult}" method="POST" id="searchResult">
+						<table>
+							<tr>
+								<td>No</td>
+								<td>商品名</td>
+								<td>価格</td>
+							</tr>
+
+							<script>
+								// 連番をふる
+								var count = 0;
+							</script>
+
+							<tr th:each="list : ${searchFormList}" th:object="${list}">
+								<td id="no"><script>
+									count++;
+									document.write(count);
+									//document.getElementById("no").innerHTML = count;
+								</script></td>
+								<td th:text="*{itemName}"></td>
+								<td th:text="*{itemPrice}"></td>
+								<td><script>
+									document
+											.write('<input type="checkbox" name="itemCheck" value="'+count+'" />');
+								</script></td>
+							</tr>
+						</table>
+					</form>
+				<!-- ■■■■■検索結果 end ■■■■■ -->
+				<form th:action="@{/buy}" method="POST">
+					<button type="button" onclick="buy()">購入</button>
+				</form>
+			</section>
 	</div>
-	<form th:action="@{/serchResult}" method="POST" id="serchResult">
-		<table>
-			<tr>
-				<td>No</td>
-				<td>商品名</td>
-				<td>価格</td>
-			</tr>
+	<script>
+		// 購入ボタン押下
+		function buy() {
+			$('#searchResult').attr('action', "/buy");
+			$('#searchResult').submit();
+		}
 
-			<script>
-				// 連番をふる
-				var count = 0;
-			</script>
-
-			<tr th:each="list : ${searchFormList}" th:object="${list}">
-				<td id ="no">
-					<script>count++;
-					document.write(count);
-					//document.getElementById("no").innerHTML = count;</script></td>
-				<td th:text="*{itemName}"></td>
-				<td th:text="*{itemPrice}"></td>
-				<td><script>
-					document.write('<input type="checkbox" name="itemCheck" value="'+count+'" />');
-				</script></td>
-			</tr>
-		</table>
-	</form>
-	<form th:action="@{/buy}" method="POST">
-			<button type="button" onclick="buy()">購入</button>
-	</form>
-	</section>
-</div>
-</div>
-<script>
-// 購入ボタン押下
-function buy() {
-	$('#serchResult').attr('action', "/buy");
-	$('#serchResult').submit();
-}
-
-// サイドメニュー操作
-$('#ens').on('click',function(){
-	if($('#slideL').hasClass('off')){
-		$('#slideL').removeClass('off');
-		$('.slide-inner').animate({'marginRight':'400px'},300).addClass('on');
-	}else{
-		$('#slideL').addClass('off');
-		$('.slide-inner').animate({'marginRight':'0px'},300);
-	}
-});
-//左のコンテンツ用にウィンドウの高さを取得
-$(document).ready(function(){
-	fit();
-	$(window).resize(function(){
-		fit();
-	})
-	function fit(){
-		var h = $(window).height();
-		$('.slide-inner').css("height",h);
-	}
-});
-</script>
+		// サイドメニュー操作
+		$('#ens').on('click', function() {
+			if ($('#slideL').hasClass('off')) {
+				$('#slideL').removeClass('off');
+				$('.slide-inner').animate({
+					'marginRight' : '400px'
+				}, 300).addClass('on');
+			} else {
+				$('#slideL').addClass('off');
+				$('.slide-inner').animate({
+					'marginRight' : '0px'
+				}, 300);
+			}
+		});
+		//左のコンテンツ用にウィンドウの高さを取得
+		$(document).ready(function() {
+			fit();
+			$(window).resize(function() {
+				fit();
+			})
+			function fit() {
+				var h = $(window).height();
+				$('.slide-inner').css("height", h);
+			}
+		});
+	</script>
 </body>
 </html>
