@@ -3,7 +3,8 @@ package controller;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+//serviceパッケージもDIできるようにパスを指定する
+@SpringBootApplication(scanBasePackages={"controller" ,"service"})
 public class DemoApplication {
 
 	// mainメソッドを持つクラスがプロジェクト内に無いと起動できない

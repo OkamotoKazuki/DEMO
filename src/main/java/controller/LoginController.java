@@ -10,7 +10,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -30,8 +29,6 @@ import service.UserInsertService;
  * @author PC
  *
  */
-//serviceパッケージをDIできるようにする
-@ComponentScan("service")
 @Controller
 public class LoginController {
 
