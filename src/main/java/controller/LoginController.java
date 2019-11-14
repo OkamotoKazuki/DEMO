@@ -91,7 +91,7 @@ public class LoginController {
 					form.setUserName("");
 				}
 				if (form.getPassWord() == null) {
-					form.setUserName("");
+					form.setPassWord("");
 				}
 			}
 		} else {

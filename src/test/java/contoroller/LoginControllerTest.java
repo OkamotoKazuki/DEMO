@@ -1,6 +1,8 @@
 package contoroller;
 
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -10,6 +12,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -20,10 +24,14 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import common.StandaloneMvcTestViewResolver;
 import constCode.ConstCode;
 import controller.LoginController;
+import dto.LoginInfo;
 import form.LoginForm;
+import form.SearchForm;
+import service.LoginService;
 
 /**
  * @author 81802
+ * ログインテスト
  *
  */
 @ContextConfiguration
@@ -31,13 +39,17 @@ import form.LoginForm;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class LoginControllerTest {
 
-	LoginController loginController = new LoginController();
+	@InjectMocks
+	LoginController loginController;
+
+	@Mock
+    private LoginService loginService;
 
 	private MockMvc mockMvc;
 
 	@Before
 	public void setup() {
-		// リクエスト情報設定
+		// ログイン実行初期設定
 		mockMvc = MockMvcBuilders.standaloneSetup(loginController)
 				.setViewResolvers(new StandaloneMvcTestViewResolver())
 				.build();
@@ -49,14 +61,14 @@ public class LoginControllerTest {
 	 */
 	@Test
 	public void test001() throws Exception {
-
+		// ログイン初期表示実行
 		MvcResult  result =
 				mockMvc.perform(get("/login"))
 				.andExpect(status().isOk()) // loginIndex()を実行するよう「get("/login")とする」
 				.andExpect(view().name("/login")) // 表示するビューをnameに設定する
 				.andReturn();
 
-		// ここでmodelに詰められたformの値を取得
+		// modelに詰められたformの値を取得
 		LoginForm resultForm = (LoginForm) result.getModelAndView().getModel().get("form");
 
 		// form内容確認
@@ -72,11 +84,9 @@ public class LoginControllerTest {
 	 */
 	@Test
 	public void test002() throws Exception {
-
-		LoginForm form = new LoginForm();
-
+		// テスト対象メソッド実行
 		MvcResult  result =
-				mockMvc.perform(post("/login").flashAttr("form", form)) // flashAttrで引数を設定
+				mockMvc.perform(post("/login"))
 				.andExpect(status().isOk())
 				.andExpect(view().name("/login"))
 				.andReturn();
@@ -93,8 +103,7 @@ public class LoginControllerTest {
 			assertTrue(s, (msgList.contains(s)));
 		});
 
-			// 遷移先URL確認
-			assertEquals(result.getResponse().getForwardedUrl(), "/login");
+		assertEquals(result.getResponse().getForwardedUrl(), "/login");
 	}
 
 	/** ログインボタン押下
@@ -103,18 +112,29 @@ public class LoginControllerTest {
 	 */
 	@Test
 	public void test003() throws Exception {
-
 		LoginForm form = new LoginForm();
 		form.setUserId("a");
 		form.setPassWord("a");
 
+		// serviceの返却結果作成
+		LoginInfo info = new LoginInfo();
+		info.setResultCode(ConstCode.SUCCESS_CODE);
+
+		// サービスメソッドをモック化
+		when(loginService.loginInfoSearch(anyString(), anyString(), anyString())).thenReturn(info);
+
+		// テスト対象メソッド実行
 		MvcResult  result =
-				mockMvc.perform(post("/login").flashAttr("form", form))
+				mockMvc.perform(post("/login").param("userName", "a").param("passWord", "a")) // paramで引数を設定
 				.andExpect(status().isOk())
-				.andExpect(view().name("/login"))
+				.andExpect(view().name("/search"))
 				.andReturn();
 
-		// 遷移先URL確認
+		// modelに詰められたformの値を取得
+		SearchForm resultForm = (SearchForm) result.getModelAndView().getModel().get("searchForm");
+
+		// 実行結果検証
+		assertEquals(resultForm.getSearchName(), "");
 		assertEquals(result.getResponse().getForwardedUrl(), "/search");
 	}
 
