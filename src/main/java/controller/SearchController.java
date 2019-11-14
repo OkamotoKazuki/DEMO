@@ -45,7 +45,7 @@ public class SearchController {
 		String view = null;
 
 		log.info("商品検索サービスを開始します");
-		List<ItemInfo> infoList = searchService.ltemSearch(info);
+		List<ItemInfo> infoList = searchService.itemSearch(info);
 		log.info("商品検索サービスを終了します");
 
 		List<SearchResultForm> searchFormList = new ArrayList<SearchResultForm>();
